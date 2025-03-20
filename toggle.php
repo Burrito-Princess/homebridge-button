@@ -1,8 +1,7 @@
 <?php
-
 function toggle ($data, $uniqueId){
     include "./creds.php";
-    $apiUrl = 'http://localhost:8581/api/accessories/' . $uniqueId;
+    $apiUrl = 'http://' . $host . ':8581/api/accessories/' . $uniqueId;
     $authToken = $auth;
 
     $ch = curl_init();
@@ -26,6 +25,7 @@ function toggle ($data, $uniqueId){
     
     curl_close($ch);
 }
+
 
 
 ?>

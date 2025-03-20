@@ -1,6 +1,6 @@
 <?php
 
-$apiUrl = 'http://localhost:8581/api/accessories/layout';
+$apiUrl = 'http://' . $host . ':8581/api/accessories/layout';
 $authToken = $auth;
 
 $ch = curl_init();

@@ -1,8 +1,5 @@
 <?php
-
-
-// echo $uniqueId;
-
+// include "./toggle.php"
 ?>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -11,13 +8,12 @@
 <script>
      function foo () {
       $.ajax({
-        url:"toggleButton.php", //the page containing php script
-        type: "POST", //request type
+        url:"toggleButton.php",
+        type: "POST",
      });
  }
 </script>
 <?php
-
 
 
 
