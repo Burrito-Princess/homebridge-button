@@ -3,7 +3,7 @@
 // function GetState($uniqueId){
 
 
-$apiUrl = 'http://localhost.net:8581/api/accessories/' . $uniqueId;
+$apiUrl = 'http://localhost:8581/api/accessories/' . $uniqueId;
 $authToken = $auth; // Replace with your actual token
 
 $ch = curl_init();
