@@ -14,7 +14,7 @@ include "get-accessories.php";
 include "get-state.php";
 ?>
 <div id="container">
-  <div onclick="foo()">
+  <div id="click" onclick="foo()">
     <?php
   if ($startState == 0){
   echo "<img id='img' src='./assets/img/lamp-off.png'>";
@@ -28,6 +28,7 @@ include "get-state.php";
 
 <script>
      function foo () {
+      document.getElementById("click").onclick = "";
       $.ajax({
         url:"toggleButton.php",
         type: "POST",
@@ -50,6 +51,7 @@ setTimeout(timeout, 1000);
      } else {
       document.getElementById("img").src = "./assets/img/lamp-on.png";
      }
+     document.getElementById("click").onclick = foo;
 }
 </script>
 <?php
