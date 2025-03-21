@@ -1,7 +1,5 @@
 <?php
 
-// function GetState($uniqueId){
-
 
 $apiUrl = 'http://' . $host . ':8581/api/accessories/' . $uniqueId;
 $authToken = $auth; // Replace with your actual token
@@ -28,6 +26,5 @@ if (curl_errno($ch)) {
     // echo "startState ".  $startState . "<br>";
 
 }
-// }
 
 ?>

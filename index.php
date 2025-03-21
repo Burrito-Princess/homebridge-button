@@ -1,13 +1,29 @@
 <?php
-// include "./toggle.php"
+
+
 ?>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
+<?php
+include "login.php";
+include "creds.php";
+include "get-accessories.php";
+include "get-state.php";
+?>
 <div id="container">
-  <button id="button" onclick="foo()">Click me!</button>
+  <div onclick="foo()">
+    <?php
+  if ($startState == 0){
+  echo "<img id='img' src='./assets/img/lamp-off.png'>";
+  } else {
+    echo "<img id='img' src='./assets/img/lamp-on.png'>";
+  }
+  ?>
+  </div>
+  
 </div>
 
 <script>
@@ -16,15 +32,24 @@
         url:"toggleButton.php",
         type: "POST",
      });
-     document.getElementById("button").style.backgroundColor = "green";
+     if (<?=  $startState?>==  0){
+      document.getElementById("img").src = "./assets/img/lamp-on.png";
+     } else {
+      document.getElementById("img").src = "./assets/img/lamp-off.png";
+     }
+
      
 
 // stop for sometime if needed
-setTimeout(myFunction, 1000);
+setTimeout(timeout, 1000);
  }
  
- function myFunction() {
-  document.getElementById("button").style.backgroundColor = "white";
+ function timeout() {
+  if (<?=  $startState?>==  0){
+      document.getElementById("img").src = "./assets/img/lamp-off.png";
+     } else {
+      document.getElementById("img").src = "./assets/img/lamp-on.png";
+     }
 }
 </script>
 <?php

@@ -1,5 +1,7 @@
 <?php
-function toggle ($data, $uniqueId){
+include "login.php";
+// toggle(json_encode(['characteristicType' => 'On', 'value' => false]), '3bbd148fccac83bbfb332c9726373cc6c6959d3f3ae0af2c309c4065487bc4bb', $auth);
+function toggle ($data, $uniqueId, $auth){
     include "./creds.php";
     $apiUrl = 'http://' . $host . ':8581/api/accessories/' . $uniqueId;
     $authToken = $auth;
