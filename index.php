@@ -1,61 +1,61 @@
 <?php
-
-
+header("Access-Control-Allow-Origin: *");
+include "./creds.php";
 ?>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link rel="stylesheet" href="./assets/css/style.css">
-</head>
+    <style>
+        #img{
 
-<?php
-include "login.php";
-include "creds.php";
-include "get-accessories.php";
-include "get-state.php";
-?>
-<div id="container">
-  <div id="click" onclick="foo()">
-    <?php
-  if ($startState == 0){
-  echo "<img id='img' src='./assets/img/lamp-off.png'>";
-  } else {
-    echo "<img id='img' src='./assets/img/lamp-on.png'>";
-  }
-  ?>
-  </div>
-  
-</div>
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img onclick="call(this.src)" id="img" src="./assets/img/0.png">
+</body>
 
 <script>
-     function foo () {
-      document.getElementById("click").onclick = "";
-      $.ajax({
-        url:"toggleButton.php",
-        type: "POST",
-     });
-     if (<?=  $startState?>==  0){
-      document.getElementById("img").src = "./assets/img/lamp-on.png";
-     } else {
-      document.getElementById("img").src = "./assets/img/lamp-off.png";
-     }
-
-     
-
-// stop for sometime if needed
-setTimeout(timeout, 1000);
- }
- 
- function timeout() {
-  if (<?=  $startState?>==  0){
-      document.getElementById("img").src = "./assets/img/lamp-off.png";
-     } else {
-      document.getElementById("img").src = "./assets/img/lamp-on.png";
-     }
-     document.getElementById("click").onclick = foo;
-}
+    function call(src){
+        // console.log(src);
+        if (src == "<?= $adress?>/assets/img/0.png"){
+            document.getElementById("img").src = "./assets/img/1.png";
+        } else {
+            document.getElementById("img").src = "./assets/img/0.png";
+        }
+    fetch('http://localhost/remote-control/homebridge-button/api.php?key=[key]', {
+        method: 'get',
+        // may be some code of fetching comes here
+    }).then(function(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response.text()
+            }
+            throw new Error(response.statusText)
+        })
+        .then(function(response) {
+            console.log(response);
+            response = JSON.parse(response);
+            if (response["response"]){
+            console.log(response);
+            if (response["state"] == 0){
+                document.getElementById("img").src = "./assets/img/0.png";
+                // console.log(response["state"])
+            } else {
+                document.getElementById("img").src = "./assets/img/1.png";
+                // console.log(response["state"])
+            }
+        } else {
+            console.log(response["message"]);
+            if (src == "<?= $adress?>/assets/img/0.png"){
+                document.getElementById("img").src = "./assets/img/0.png";
+            } else {
+                document.getElementById("img").src = "./assets/img/1.png";
+            }
+        }
+        })
+        }
 </script>
-<?php
-
-
-
-?>
