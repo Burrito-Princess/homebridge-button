@@ -27,7 +27,7 @@ include "./creds.php";
         } else {
             document.getElementById("img").src = "./assets/img/0.png";
         }
-    fetch('http://localhost/remote-control/homebridge-button/api.php?key=[key]', {
+    fetch('http://localhost/remote-control/homebridge-button/api.php?key=<?= $apiKey?>', {
         method: 'get',
     }).then(function(response) {
             if (response.status >= 200 && response.status < 300) {
