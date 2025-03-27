@@ -29,7 +29,6 @@ include "./creds.php";
         }
     fetch('http://localhost/remote-control/homebridge-button/api.php?key=[key]', {
         method: 'get',
-        // may be some code of fetching comes here
     }).then(function(response) {
             if (response.status >= 200 && response.status < 300) {
                 return response.text()
@@ -37,7 +36,7 @@ include "./creds.php";
             throw new Error(response.statusText)
         })
         .then(function(response) {
-            console.log(response);
+            // console.log(response);
             response = JSON.parse(response);
             if (response["response"]){
             console.log(response);
