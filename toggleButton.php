@@ -1,5 +1,7 @@
 <?php
-include "./creds.php";
+
+function toggleFunc(){
+    include "./creds.php";
 include "./login.php";
 include "./get-accessories.php";
 include "./toggle.php";
@@ -14,4 +16,6 @@ if ($startState == 0) {
     sleep(1);
     toggle(json_encode(['characteristicType' => 'On', 'value' => true]), $uniqueId, $auth);
 
+}
+return ($startState);
 }?>
