@@ -1,5 +1,6 @@
 <?php
 session_start();
+header("Access-Control-Allow-Origin: *");
 // Database is to slow sometimes, so it checks on Session first.
 if (isset($_SESSION["rate"])){
     if (time() >= $_SESSION["rate"] + 5){

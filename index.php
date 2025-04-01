@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// header("Access-Control-Allow-Origin: *");
 include "./creds.php";
 ?>
 <head>
@@ -27,7 +27,7 @@ include "./creds.php";
         } else {
             document.getElementById("img").src = "./assets/img/0.png";
         }
-    fetch('http://localhost/remote-control/homebridge-button/api.php?key=[key]', {
+    fetch('http://localhost/remote-control/homebridge-button/api.php?key=9b61e1ff-bd22-4de8-a194-654887f4af9d', {
         method: 'get',
     }).then(function(response) {
             if (response.status >= 200 && response.status < 300) {
