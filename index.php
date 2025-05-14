@@ -27,7 +27,7 @@ include "./creds.php";
         } else {
             document.getElementById("img").src = "./assets/img/0.png";
         }
-    fetch('http://localhost/remote-control/homebridge-button/api.php?key=9b61e1ff-bd22-4de8-a194-654887f4af9d', {
+    fetch('http://localhost/remote-control/homebridge-button/api.php?key=hello&deviceName=Desk lights', {
         method: 'get',
     }).then(function(response) {
             if (response.status >= 200 && response.status < 300) {

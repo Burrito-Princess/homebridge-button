@@ -19,17 +19,17 @@ if (curl_errno($ch)) {
     $array = json_decode($response, true);
     $response = json_decode($response);
     // echo "<pre>"; print_r($response);
+    // exit;
     // echo gettype($array);
     foreach ($array[0]["services"] as $device){
         
         if (isset($device["customName"])){
             // echo $device["customName"] . "<br>";
-            if ($device["customName"] == "Desk lights"){
+            if ($device["customName"] == $deviceName){
                 $uniqueId = $device["uniqueId"];
+                $deviceName = $device["customName"];
                 break;
             }
-        } else {
-
         }
     }
 }
