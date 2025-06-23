@@ -6,6 +6,7 @@ session_start();
 header("Access-Control-Allow-Origin: *");
 // Database is to slow sometimes, so it checks on Session first.
 if (isset($_SESSION["rate"])){
+    
     if (time() >= $_SESSION["rate"] + 5){
         echo api();
         $_SESSION["rate"] = time();
@@ -21,6 +22,7 @@ if (isset($_SESSION["rate"])){
 }
 
 function api(){
+
     include "creds.php";
     try {
         $givenApiKey = $_GET["key"];
@@ -33,7 +35,7 @@ function api(){
         exit;
     }
     // checks the given apikey, if it exists it conintues, else it errors and quits.
-    
+       
 
     if ($_GET["key"] == $response["apiKey"]) {
         $status = array(
