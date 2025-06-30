@@ -16,9 +16,10 @@ if (isset($_SESSION["rate"])){
     }
 } else {
     // First time calling api, session is not set, so it gets a call without session check.
+
     $_SESSION["rate"] = time();
-        echo api();
-        $_SESSION["rate"] = time();
+    echo api();
+    $_SESSION["rate"] = time();
 }
 
 function api(){
@@ -35,16 +36,18 @@ function api(){
         exit;
     }
     // checks the given apikey, if it exists it conintues, else it errors and quits.
-       
-
     if ($_GET["key"] == $response["apiKey"]) {
+        if ($response["fullAccess"] == 1){
+            $fullAccess = true;
+            echo "fullAccess";
+        }
         $status = array(
             "response" => true,
             "state" => false,
             "device" => false
         );
         // if the api key is correct, check current time agaist last database entry.
-        if (time() >= $response["timestamp"] + 5) {
+        if (time() >= $response["timestamp"]) {
             if (isset($_GET["deviceName"]) && $response["fullAccess"] == 1){
                 $deviceName = $_GET["deviceName"];
             } else if (!isset($_GET["deviceName"])){
