@@ -6,24 +6,6 @@ use WpOrg\Requests\Response;
 
 header("Access-Control-Allow-Origin: *");
 api();
-// Database is to slow sometimes, so it checks on Session first.
-// if (isset($_SESSION["rate"])){
-    
-//     if (time() >= $_SESSION["rate"] + 5){
-//         echo api();
-//         $_SESSION["rate"] = time();
-//     } else {
-//         // Error response if the last request (in the session) was less then 5 seconds ago.
-//         echo json_encode(array("response" => false, "message" => "Hold up there partner, You've been ratelimited"));
-//     }
-// } else {
-//     // First time calling api, session is not set, so it gets a call without session check.
-
-//     $_SESSION["rate"] = time();
-//     echo api();
-//     $_SESSION["rate"] = time();
-// }
-
 function api(){
 
     include "creds.php";
@@ -49,7 +31,6 @@ function api(){
             "device" => false
         );
         // if the api key is correct, check current time agaist last database entry.
-        // if (time() >= $response["timestamp"]) {
             if (isset($_GET["deviceName"])){
                 $deviceName = $_GET["deviceName"];
             } else if (!isset($_GET["deviceName"])){
@@ -63,7 +44,7 @@ function api(){
                     try {
                         include "toggle.php";
                         $deviceName = $_GET["deviceName"];
-                        $startState = toggleFunc($deviceName);
+                        $startState = toggleFunc($deviceName, $_GET["toggle"]);
                         $status["state"] = $startState;
                         $status["device"] = $deviceName;
                         $time = time();
@@ -77,10 +58,6 @@ function api(){
                     } catch (Exception $e) {
                         // echo 'Message: ' . $e->getMessage();
                     }
-        // } else {
-        //     // If enntry in database is less then 5 seconds ago, it sends a false response with message.
-        //     return json_encode(array("response" => false, "message" => "Hold up there partner, You've been ratelimited"));
-        // }
     } else {
         // If key is incorrect, return false response with message.
         return json_encode(array("response" => false, "message" => "Wow there partner, that key is mighty incorrect"));
